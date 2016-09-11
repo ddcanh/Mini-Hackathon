@@ -18,9 +18,15 @@ class GameScene: SKScene {
     
     var player: SKSpriteNode!
     var police: SKSpriteNode!
+    var bridge1:SKSpriteNode!
+    var bridge2:SKSpriteNode!
+    var tree1:SKSpriteNode!
+    var tree2:SKSpriteNode!
+    var tree3:SKSpriteNode!
     
     var enemys = [SKSpriteNode]()
     var powers = [SKSpriteNode]()
+    var trees = [SKSpriteNode]()
     
     var health: CGFloat = 100
     var maxHealth: CGFloat = 150
@@ -40,7 +46,15 @@ class GameScene: SKScene {
         addScore()
         addPlayer()
         addPolice()
+<<<<<<< HEAD
+        addBridge()
+        addTree()
+        
+        
+ 
+=======
 
+>>>>>>> origin/master
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -264,6 +278,11 @@ class GameScene: SKScene {
         backGround1.size = self.frame.size
         backGround2.size = self.frame.size
         
+//        let addBridge = SKAction.runBlock {
+//            self.addBridge()
+//        }
+//        
+//        self.runAction(addBridge)
         addChild(backGround1)
         addChild(backGround2)
     }
@@ -272,11 +291,11 @@ class GameScene: SKScene {
         backGround1.position = CGPoint(x: backGround1.position.x, y: backGround1.position.y - speed)
         backGround2.position = CGPoint(x: backGround2.position.x, y: backGround2.position.y - speed)
         
-        if backGround1.position.y < -backGround1.frame.height {
-            backGround1.position.y = backGround2.position.y + backGround2.frame.height
+        if backGround1.position.y < -backGround1.frame.height  {
+            backGround1.position.y = backGround2.position.y + backGround2.frame.height - 10
         }
         
-        if backGround2.position.y < -backGround2.frame.height {
+        if backGround2.position.y < -backGround2.frame.height  {
             backGround2.position.y = backGround1.position.y + backGround1.frame.height
         }
         
@@ -299,6 +318,43 @@ class GameScene: SKScene {
         
     }
     
+<<<<<<< HEAD
+    func addBridge() {
+        bridge2 = SKSpriteNode(imageNamed: "bridge2.png")
+        bridge2.position = CGPoint(x: backGround1.position.x + backGround1.size.width/2 , y: backGround1.position.y)
+        
+        bridge2.zPosition = 101
+        backGround2.addChild(bridge2)
+    }
+    
+    func addTree() {
+        tree1 = SKSpriteNode(imageNamed: "tree.png")
+        tree1.size = CGSize(width: 22, height: 36)
+        tree1.position = CGPoint(x: backGround2.position.x + backGround2.size.width - 11 , y:backGround2.size.height)
+        
+        tree2 = SKSpriteNode(imageNamed: "tree.png")
+        tree2.size = CGSize(width: 22,height: 36)
+        tree2.position = CGPoint(x: backGround2.position.x + backGround2.size.width - 11 , y:backGround2.size.height - 220 )
+        
+        tree3 = SKSpriteNode(imageNamed: "tree.png")
+        tree3.size = CGSize(width: 22,height: 36)
+        tree3.position = CGPoint(x: backGround2.position.x + 11, y: backGround2.size.height - 50 )
+        
+        
+        
+        tree3.zRotation = 3.14
+        
+        
+        tree1.zPosition = 1
+        tree2.zPosition = 1
+        tree3.zPosition = 1
+        
+        backGround2.addChild(tree2)
+        backGround2.addChild(tree1)
+        backGround2.addChild(tree3)
+    }
+    
+=======
     func addBackgroundMusic() {
         if let musicURL = NSBundle.mainBundle().URLForResource("backGround_Sound", withExtension: "mp3") {
             backgroundMusic = SKAudioNode(URL: musicURL)
@@ -341,6 +397,7 @@ class GameScene: SKScene {
     }
     
     
+>>>>>>> origin/master
     
 }
 
