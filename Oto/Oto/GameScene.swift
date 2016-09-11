@@ -14,6 +14,7 @@ class GameScene: SKScene {
     
     var backGround1: SKSpriteNode!
     var backGround2: SKSpriteNode!
+    var backgroundMusic: SKAudioNode!
     
     var player: SKSpriteNode!
     var police: SKSpriteNode!
@@ -22,21 +23,24 @@ class GameScene: SKScene {
     var powers = [SKSpriteNode]()
     
     var health: CGFloat = 100
+    var maxHealth: CGFloat = 150
     
     var previousTime: CFTimeInterval = -1
     var countForE = 0
     var countForP = 0
     
+    var score = 0
+    var scoreLabel: SKLabelNode!
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
 
         
         addBackGround()
+        addBackgroundMusic()
+        addScore()
         addPlayer()
         addPolice()
-        
-        
- 
+
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -89,8 +93,24 @@ class GameScene: SKScene {
                 addPower()
                 countForP = 0
             }
+            
+            updateScore()
         }
         
+        
+        updateEnemys()
+        updatePower()
+        updatePolice()
+        // move police toward player
+        movePolice(3,speedY: 1)
+        
+        if health > maxHealth {
+            health = maxHealth
+        }
+    }
+    
+    func updateEnemys() {
+        /* ENEMYS */
         
         //check collision player vs cars
         for (enemyIndex,enemy) in enemys.enumerate() {
@@ -103,10 +123,15 @@ class GameScene: SKScene {
         
         // remove car when move beyond the screen
         for (enemyIndex,enemy) in enemys.enumerate() {
-            if enemy.position.y < 0 {
+            if enemy.position.y < -enemy.frame.height/2 {
                 enemys.removeAtIndex(enemyIndex)
             }
         }
+
+    }
+    
+    func updatePower() {
+        /* POWER */
         
         //check get power
         for (powerIndex,power) in powers.enumerate() {
@@ -123,13 +148,30 @@ class GameScene: SKScene {
                 powers.removeAtIndex(powerIndex)
             }
         }
+
+    }
+    
+    func updatePolice() {
+        /* POLICE */
         
-        movePolice(3,speedY: 1)
         
-        if CGRectIntersectsRect(player.frame, police.frame) {
-            self.paused = true
+        
+        // check interset police vs cars
+        for (enemyIndex,enemy) in enemys.enumerate() {
+            if CGRectIntersectsRect(enemy.frame, police.frame) {
+                enemy.removeFromParent()
+                enemys.removeAtIndex(enemyIndex)
+                health += 10
+            }
         }
         
+        // check intersect police vs player
+        if CGRectIntersectsRect(player.frame, police.frame) {
+            self.paused = true
+            player.removeFromParent()
+            gameOver()
+        }
+
     }
     
     func movePolice(speedX: CGFloat, speedY: CGFloat) {
@@ -241,7 +283,7 @@ class GameScene: SKScene {
     }
     
     func addPolice() {
-        police = SKSpriteNode(imageNamed: "PoliceCar")
+        police = SKSpriteNode(imageNamed: "PoliceCar2")
         
         police.position = CGPoint(x: player.position.x, y: player.position.y - police.frame.height/2 - health)
         
@@ -249,5 +291,59 @@ class GameScene: SKScene {
         
     }
     
+    func addBackgroundMusic() {
+        if let musicURL = NSBundle.mainBundle().URLForResource("backGround_Sound", withExtension: "mp3") {
+            backgroundMusic = SKAudioNode(URL: musicURL)
+            addChild(backgroundMusic)
+        }
+        
+    }
+    
+    func updateScore() {
+        score += 1
+        scoreLabel.text = String(Int(score/10))
+    }
+    
+    func addScore() {
+        let scoreText = SKLabelNode(text: "Score:")
+        scoreText.fontColor = UIColor.blueColor()
+        scoreText.fontSize = 15
+        scoreText.fontName = "Verdana-Bold"
+        scoreText.position = CGPoint(x: self.frame.width - 100, y: self.frame.height - 15)
+        addChild(scoreText)
+        
+        scoreLabel = SKLabelNode(text: String(score))
+        scoreLabel.fontColor = UIColor.blueColor()
+        scoreLabel.fontSize = 15
+        scoreLabel.horizontalAlignmentMode = .Left
+        scoreLabel.fontName = "Verdana-Bold"
+        scoreLabel.position = CGPoint(x: self.frame.width - 50, y: self.frame.height - 15)
+        addChild(scoreLabel)
+        
+    }
+    
+    func gameOver() {
+        let gameOverText = SKLabelNode(text: "GAME OVER")
+        gameOverText.fontSize = 44
+        gameOverText.fontColor = UIColor.redColor()
+       
+        gameOverText.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
+        
+        addChild(gameOverText)
+    }
+    
+    
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
