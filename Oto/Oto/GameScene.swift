@@ -10,58 +10,52 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    let margin: CGFloat = 15
+    let margin: CGFloat = 20
     
     var backGround1: SKSpriteNode!
     var backGround2: SKSpriteNode!
     var backgroundMusic: SKAudioNode!
+    var backGroundSpeed: CGFloat!
+    
     
     var player: SKSpriteNode!
     var police: SKSpriteNode!
     var bridge1:SKSpriteNode!
     var bridge2:SKSpriteNode!
-    var tree1:SKSpriteNode!
-    var tree2:SKSpriteNode!
-    var tree3:SKSpriteNode!
     
     var enemys = [SKSpriteNode]()
     var powers = [SKSpriteNode]()
     var trees = [SKSpriteNode]()
     
-    var health: CGFloat = 100
-    var maxHealth: CGFloat = 150
+    var health: CGFloat = 50
+    var maxHealth: CGFloat = 80
     
     var previousTime: CFTimeInterval = -1
     var countForE = 0
     var countForP = 0
-    
+    var minTime: CFTimeInterval = 2
     var score = 0
     var scoreLabel: SKLabelNode!
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-
+        
         
         addBackGround()
         addBackgroundMusic()
         addScore()
         addPlayer()
         addPolice()
-<<<<<<< HEAD
         addBridge()
         addTree()
         
         
- 
-=======
-
->>>>>>> origin/master
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       /* Called when a touch begins */
-
+        /* Called when a touch begins */
+        
     }
-   
+    
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         if let touch = touches.first {
@@ -72,10 +66,10 @@ class GameScene: SKScene {
             
             player.position = CGPoint(x: player.position.x + dx, y: player.position.y)
             
-            if player.position.x < player.frame.width/2 {
-                player.position.x = player.frame.width/2
-            } else if player.position.x > self.frame.width - player.frame.width/2 {
-                player.position.x = self.frame.width - player.frame.width/2
+            if player.position.x < player.frame.width/2 + margin  {
+                player.position.x = player.frame.width/2 + margin
+            } else if player.position.x > self.frame.width - player.frame.width/2 - margin {
+                player.position.x = self.frame.width - player.frame.width/2 - margin
             }
             
         }
@@ -86,50 +80,70 @@ class GameScene: SKScene {
         /* Called before each frame is rendered */
         
         
+        var enemySpeed: CGFloat = 10
+        if score < 200 {
+            minTime = 3
+            
+        } else if score < 900 {
+            minTime = 2
+            enemySpeed = 15
+        } else  {
+            minTime = 1
+            enemySpeed = 30
+        }
+        
+        updateScore()
+        
+        if score < 900 {
+            backGroundSpeed = CGFloat(score/30)
+        } else {
+            backGroundSpeed = 30
+        }
+        scrollBackGround(backGroundSpeed)
         
         if previousTime == -1 {
             previousTime = currentTime
         } else {
             let delta = currentTime - previousTime
             
-            if delta > 2 {
+            if delta > minTime {
                 countForE += 1
                 countForP += 1
                 previousTime = currentTime
-
+                
             }
             
             if countForE == 1{
-                addEnemy()
+                addEnemy(enemySpeed)
                 countForE = 0
             }
             
-            if countForP == 4{
+            if countForP == 10{
                 addPower()
                 countForP = 0
             }
-
+            
         }
-
-        updateScore()
         
-        if score > 50 {
-            scrollBackGround(20)
-        } else if score > 200 {
-            scrollBackGround(40)
-        } else {
-            scrollBackGround(10)
-        }
-
+        
         
         updateEnemys()
         updatePower()
         updatePolice()
+        checkIntersectTree()
         // move police toward player
         movePolice(3,speedY: 1)
         
         if health > maxHealth {
             health = maxHealth
+        }
+    }
+    
+    func checkIntersectTree() {
+        for tree in trees {
+            if CGRectIntersectsRect(tree.frame, player.frame) {
+                health -= 5
+            }
         }
     }
     
@@ -149,9 +163,10 @@ class GameScene: SKScene {
         for (enemyIndex,enemy) in enemys.enumerate() {
             if enemy.position.y < -enemy.frame.height/2 {
                 enemys.removeAtIndex(enemyIndex)
+                enemy.removeFromParent()
             }
         }
-
+        
     }
     
     func updatePower() {
@@ -172,18 +187,18 @@ class GameScene: SKScene {
                 powers.removeAtIndex(powerIndex)
             }
         }
-
+        
     }
     
     func updatePolice() {
         /* POLICE */
-
+        
         // check interset police vs cars
         for (enemyIndex,enemy) in enemys.enumerate() {
             if CGRectIntersectsRect(enemy.frame, police.frame) {
                 enemy.removeFromParent()
                 enemys.removeAtIndex(enemyIndex)
-                health += 10
+                health += 5
             }
         }
         
@@ -193,7 +208,7 @@ class GameScene: SKScene {
             player.removeFromParent()
             gameOver()
         }
-
+        
     }
     
     func movePolice(speedX: CGFloat, speedY: CGFloat) {
@@ -203,7 +218,7 @@ class GameScene: SKScene {
             police.position.x -= speedX
         }
         
-        let positionY = player.position.y - police.frame.height/2 - health
+        let positionY = player.position.y - player.frame.height/2 - police.frame.height/2 - health
         
         if police.position.y < positionY {
             police.position.y += speedY
@@ -233,7 +248,7 @@ class GameScene: SKScene {
                 }
             }
         }
-
+        
         
         // add action
         let actionRun = SKAction.moveByX(0, y: -10, duration: 0.1)
@@ -244,7 +259,9 @@ class GameScene: SKScene {
         addChild(power)
     }
     
-    func addEnemy() {
+    func addEnemy(speed: CGFloat) {
+        
+        let marginSpeed = CGFloat(arc4random_uniform(20))
         
         // set random image
         let randomNumber = Int(arc4random_uniform(3)) + 1
@@ -255,13 +272,16 @@ class GameScene: SKScene {
         let postionX = CGFloat(arc4random_uniform(UInt32(self.frame.maxX - enemy.frame.width - margin * 2))) + enemy.frame.width/2 + margin
         enemy.position = CGPoint(x: postionX, y: self.frame.maxY)
         
-        // add action run 
-        let actionRun = SKAction.moveByX(0, y: -10, duration: 0.1)
+        // add action run
+        let fallSpeed = speed + marginSpeed
+        
+        let actionRun = SKAction.moveByX(0, y:-fallSpeed, duration: 0.1)
         enemy.runAction(SKAction.repeatActionForever(actionRun))
+        addChild(enemy)
+        
         
         enemys.append(enemy)
         
-        addChild(enemy)
         
     }
     
@@ -278,11 +298,6 @@ class GameScene: SKScene {
         backGround1.size = self.frame.size
         backGround2.size = self.frame.size
         
-//        let addBridge = SKAction.runBlock {
-//            self.addBridge()
-//        }
-//        
-//        self.runAction(addBridge)
         addChild(backGround1)
         addChild(backGround2)
     }
@@ -304,21 +319,20 @@ class GameScene: SKScene {
     func addPlayer() {
         player = SKSpriteNode(imageNamed: "Car")
         player.position = CGPoint(x: self.frame.width/2, y: 150)
-        player.parent 
-    
+        player.parent
+        
         addChild(player)
     }
     
     func addPolice() {
         police = SKSpriteNode(imageNamed: "PoliceCar2")
         
-        police.position = CGPoint(x: player.position.x, y: player.position.y - police.frame.height/2 - health)
+        police.position = CGPoint(x: player.position.x, y: player.position.y - player.frame.height/2 - police.frame.height/2 - health)
         
         addChild(police)
         
     }
     
-<<<<<<< HEAD
     func addBridge() {
         bridge2 = SKSpriteNode(imageNamed: "bridge2.png")
         bridge2.position = CGPoint(x: backGround1.position.x + backGround1.size.width/2 , y: backGround1.position.y)
@@ -328,33 +342,26 @@ class GameScene: SKScene {
     }
     
     func addTree() {
-        tree1 = SKSpriteNode(imageNamed: "tree.png")
+        let tree1 = SKSpriteNode(imageNamed: "tree.png")
         tree1.size = CGSize(width: 22, height: 36)
         tree1.position = CGPoint(x: backGround2.position.x + backGround2.size.width - 11 , y:backGround2.size.height)
         
-        tree2 = SKSpriteNode(imageNamed: "tree.png")
+        let tree2 = SKSpriteNode(imageNamed: "tree.png")
         tree2.size = CGSize(width: 22,height: 36)
         tree2.position = CGPoint(x: backGround2.position.x + backGround2.size.width - 11 , y:backGround2.size.height - 220 )
         
-        tree3 = SKSpriteNode(imageNamed: "tree.png")
+        let tree3 = SKSpriteNode(imageNamed: "tree.png")
         tree3.size = CGSize(width: 22,height: 36)
         tree3.position = CGPoint(x: backGround2.position.x + 11, y: backGround2.size.height - 50 )
         
-        
-        
         tree3.zRotation = 3.14
         
-        
-        tree1.zPosition = 1
-        tree2.zPosition = 1
-        tree3.zPosition = 1
-        
+        trees = [tree1, tree2, tree3]
         backGround2.addChild(tree2)
         backGround2.addChild(tree1)
         backGround2.addChild(tree3)
     }
     
-=======
     func addBackgroundMusic() {
         if let musicURL = NSBundle.mainBundle().URLForResource("backGround_Sound", withExtension: "mp3") {
             backgroundMusic = SKAudioNode(URL: musicURL)
@@ -390,14 +397,12 @@ class GameScene: SKScene {
         let gameOverText = SKLabelNode(text: "GAME OVER")
         gameOverText.fontSize = 44
         gameOverText.fontColor = UIColor.redColor()
-       
+        
         gameOverText.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
         
         addChild(gameOverText)
     }
     
-    
->>>>>>> origin/master
     
 }
 

@@ -12,7 +12,7 @@
 		455C62521D850F73006DEEEB /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 455C62511D850F73006DEEEB /* tree.png */; };
 		455C625F1D853552006DEEEB /* backGround_Sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 455C625E1D853552006DEEEB /* backGround_Sound.mp3 */; };
 		455C62611D853558006DEEEB /* CrashCar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 455C62601D853558006DEEEB /* CrashCar.mp3 */; };
-		455C62641D853577006DEEEB /* PoliceCar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 455C62631D853577006DEEEB /* PoliceCar1.png */; };
+		455C62641D853577006DEEEB /* EnemyCar4.png in Resources */ = {isa = PBXBuildFile; fileRef = 455C62631D853577006DEEEB /* EnemyCar4.png */; };
 		455C62661D85357B006DEEEB /* PoliceCar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 455C62651D85357B006DEEEB /* PoliceCar2.png */; };
 		4568F1EE1D8457EC00D70B3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4568F1ED1D8457EC00D70B3E /* AppDelegate.swift */; };
 		4568F1F01D8457EC00D70B3E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4568F1EF1D8457EC00D70B3E /* GameScene.sks */; };
@@ -36,7 +36,7 @@
 		455C62511D850F73006DEEEB /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
 		455C625E1D853552006DEEEB /* backGround_Sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backGround_Sound.mp3; sourceTree = "<group>"; };
 		455C62601D853558006DEEEB /* CrashCar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CrashCar.mp3; sourceTree = "<group>"; };
-		455C62631D853577006DEEEB /* PoliceCar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PoliceCar1.png; sourceTree = "<group>"; };
+		455C62631D853577006DEEEB /* EnemyCar4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EnemyCar4.png; sourceTree = "<group>"; };
 		455C62651D85357B006DEEEB /* PoliceCar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PoliceCar2.png; sourceTree = "<group>"; };
 		4568F1EA1D8457EC00D70B3E /* Oto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4568F1ED1D8457EC00D70B3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 				4568F2121D8458DD00D70B3E /* EnemyCar2.png */,
 				4568F2081D8457FE00D70B3E /* EnemyCar3.png */,
 				4568F2091D8457FE00D70B3E /* health.png */,
-				455C62631D853577006DEEEB /* PoliceCar1.png */,
+				455C62631D853577006DEEEB /* EnemyCar4.png */,
 				455C62651D85357B006DEEEB /* PoliceCar2.png */,
 			);
 			path = Images;
@@ -207,7 +207,7 @@
 				455C624E1D850F67006DEEEB /* bridge2.png in Resources */,
 				4568F1F01D8457EC00D70B3E /* GameScene.sks in Resources */,
 				455C62611D853558006DEEEB /* CrashCar.mp3 in Resources */,
-				455C62641D853577006DEEEB /* PoliceCar1.png in Resources */,
+				455C62641D853577006DEEEB /* EnemyCar4.png in Resources */,
 				4568F1FC1D8457EC00D70B3E /* LaunchScreen.storyboard in Resources */,
 				4568F2101D8457FE00D70B3E /* health.png in Resources */,
 				4568F1F91D8457EC00D70B3E /* Assets.xcassets in Resources */,
