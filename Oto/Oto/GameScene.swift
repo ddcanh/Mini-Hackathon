@@ -71,7 +71,7 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         
-        scrollBackGround(10)
+        
         
         if previousTime == -1 {
             previousTime = currentTime
@@ -82,6 +82,7 @@ class GameScene: SKScene {
                 countForE += 1
                 countForP += 1
                 previousTime = currentTime
+
             }
             
             if countForE == 1{
@@ -93,10 +94,19 @@ class GameScene: SKScene {
                 addPower()
                 countForP = 0
             }
-            
-            updateScore()
+
         }
+
+        updateScore()
         
+        if score > 50 {
+            scrollBackGround(20)
+        } else if score > 200 {
+            scrollBackGround(40)
+        } else {
+            scrollBackGround(10)
+        }
+
         
         updateEnemys()
         updatePower()
@@ -153,9 +163,7 @@ class GameScene: SKScene {
     
     func updatePolice() {
         /* POLICE */
-        
-        
-        
+
         // check interset police vs cars
         for (enemyIndex,enemy) in enemys.enumerate() {
             if CGRectIntersectsRect(enemy.frame, police.frame) {
@@ -301,7 +309,7 @@ class GameScene: SKScene {
     
     func updateScore() {
         score += 1
-        scoreLabel.text = String(Int(score/10))
+        scoreLabel.text = String(score)
     }
     
     func addScore() {
