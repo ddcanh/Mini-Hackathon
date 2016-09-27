@@ -21,13 +21,15 @@
 		4568F1F71D8457EC00D70B3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4568F1F51D8457EC00D70B3E /* Main.storyboard */; };
 		4568F1F91D8457EC00D70B3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4568F1F81D8457EC00D70B3E /* Assets.xcassets */; };
 		4568F1FC1D8457EC00D70B3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4568F1FA1D8457EC00D70B3E /* LaunchScreen.storyboard */; };
-		4568F20C1D8457FE00D70B3E /* Car.png in Resources */ = {isa = PBXBuildFile; fileRef = 4568F2051D8457FE00D70B3E /* Car.png */; };
 		4568F20D1D8457FE00D70B3E /* EnemyCar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4568F2061D8457FE00D70B3E /* EnemyCar1.png */; };
 		4568F20F1D8457FE00D70B3E /* EnemyCar3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4568F2081D8457FE00D70B3E /* EnemyCar3.png */; };
 		4568F2101D8457FE00D70B3E /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 4568F2091D8457FE00D70B3E /* health.png */; };
 		4568F2131D8458DD00D70B3E /* EnemyCar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4568F2121D8458DD00D70B3E /* EnemyCar2.png */; };
 		4568F2151D845D6000D70B3E /* backGround.png in Resources */ = {isa = PBXBuildFile; fileRef = 4568F2141D845D6000D70B3E /* backGround.png */; };
 		4568F2181D84605100D70B3E /* CGPointUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4568F2171D84605100D70B3E /* CGPointUtil.swift */; };
+		45C366E51D86E9F300EBF882 /* Car.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C366E41D86E9F300EBF882 /* Car.png */; };
+		45C366E81D86F5AF00EBF882 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 45C366E61D86F5AF00EBF882 /* Explosion.sks */; };
+		45C366E91D86F5AF00EBF882 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C366E71D86F5AF00EBF882 /* spark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,13 +49,15 @@
 		4568F1F81D8457EC00D70B3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4568F1FB1D8457EC00D70B3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4568F1FD1D8457EC00D70B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4568F2051D8457FE00D70B3E /* Car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Car.png; sourceTree = "<group>"; };
 		4568F2061D8457FE00D70B3E /* EnemyCar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EnemyCar1.png; sourceTree = "<group>"; };
 		4568F2081D8457FE00D70B3E /* EnemyCar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EnemyCar3.png; sourceTree = "<group>"; };
 		4568F2091D8457FE00D70B3E /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
 		4568F2121D8458DD00D70B3E /* EnemyCar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EnemyCar2.png; sourceTree = "<group>"; };
 		4568F2141D845D6000D70B3E /* backGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backGround.png; sourceTree = "<group>"; };
 		4568F2171D84605100D70B3E /* CGPointUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointUtil.swift; sourceTree = "<group>"; };
+		45C366E41D86E9F300EBF882 /* Car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Car.png; sourceTree = "<group>"; };
+		45C366E61D86F5AF00EBF882 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		45C366E71D86F5AF00EBF882 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 				4568F1ED1D8457EC00D70B3E /* AppDelegate.swift */,
 				4568F1EF1D8457EC00D70B3E /* GameScene.sks */,
 				4568F1F11D8457EC00D70B3E /* GameScene.swift */,
+				45C366E61D86F5AF00EBF882 /* Explosion.sks */,
+				45C366E71D86F5AF00EBF882 /* spark.png */,
 				4568F1F31D8457EC00D70B3E /* GameViewController.swift */,
 				4568F1F51D8457EC00D70B3E /* Main.storyboard */,
 				4568F1F81D8457EC00D70B3E /* Assets.xcassets */,
@@ -125,7 +131,7 @@
 				455C624F1D850F6B006DEEEB /* bridge1.png */,
 				455C624D1D850F67006DEEEB /* bridge2.png */,
 				4568F2141D845D6000D70B3E /* backGround.png */,
-				4568F2051D8457FE00D70B3E /* Car.png */,
+				45C366E41D86E9F300EBF882 /* Car.png */,
 				4568F2061D8457FE00D70B3E /* EnemyCar1.png */,
 				4568F2121D8458DD00D70B3E /* EnemyCar2.png */,
 				4568F2081D8457FE00D70B3E /* EnemyCar3.png */,
@@ -176,6 +182,7 @@
 				TargetAttributes = {
 					4568F1E91D8457EC00D70B3E = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = YEHSHWL4Z2;
 					};
 				};
 			};
@@ -203,11 +210,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				455C62661D85357B006DEEEB /* PoliceCar2.png in Resources */,
-				4568F20C1D8457FE00D70B3E /* Car.png in Resources */,
 				455C624E1D850F67006DEEEB /* bridge2.png in Resources */,
 				4568F1F01D8457EC00D70B3E /* GameScene.sks in Resources */,
 				455C62611D853558006DEEEB /* CrashCar.mp3 in Resources */,
 				455C62641D853577006DEEEB /* EnemyCar4.png in Resources */,
+				45C366E51D86E9F300EBF882 /* Car.png in Resources */,
+				45C366E91D86F5AF00EBF882 /* spark.png in Resources */,
 				4568F1FC1D8457EC00D70B3E /* LaunchScreen.storyboard in Resources */,
 				4568F2101D8457FE00D70B3E /* health.png in Resources */,
 				4568F1F91D8457EC00D70B3E /* Assets.xcassets in Resources */,
@@ -219,6 +227,7 @@
 				4568F20D1D8457FE00D70B3E /* EnemyCar1.png in Resources */,
 				455C62501D850F6B006DEEEB /* bridge1.png in Resources */,
 				4568F20F1D8457FE00D70B3E /* EnemyCar3.png in Resources */,
+				45C366E81D86F5AF00EBF882 /* Explosion.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,10 +356,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Oto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ddc.Oto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -358,10 +371,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Oto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ddc.Oto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
